@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService {
 
-    private MemberRepository memberRepository; // final 필수 값을 넣어야 됨
-    private DiscountPolicy discountPolicy; // 필드 주입 권장x 테스트 코드에서 사용
+    private final MemberRepository memberRepository; // final 필수 값을 넣어야 됨
+    private final DiscountPolicy discountPolicy; // 필드 주입 권장x 테스트 코드에서 사용
 
 //    // 수정 주입(settr 주입), 선택적으로 의존관계 주입
 //    @Autowired(required = false)
@@ -35,11 +35,11 @@ public class OrderServiceImpl implements OrderService {
         this.discountPolicy = discountPolicy;
     }
 
-    @Autowired // 일반 메서드 주입. 잘 사용하지 않음
-    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    @Autowired // 일반 메서드 주입. 잘 사용하지 않음
+//    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
